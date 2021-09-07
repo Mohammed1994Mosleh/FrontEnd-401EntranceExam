@@ -28,9 +28,8 @@ class App extends React.Component {
   }
 
 
-  async handlefav(){
-    const {user}=this.props.auth0;
-    let email=user.email;
+  async handlefav(email){
+   
 let newData=await axios.get((`${process.env.REACT_APP_Serverurl}/getfav?email=${email}`));
 await this.setState({favData:newData.data})
     

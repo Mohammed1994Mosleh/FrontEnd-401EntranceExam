@@ -14,9 +14,10 @@ constructor(props){
 }
 
 componentDidMount(){
+  const {user}=this.props.auth0;
+  let email=user.email;
 
-
-  this.props.handlefav();
+  this.props.handlefav(email);
 }
 
 
