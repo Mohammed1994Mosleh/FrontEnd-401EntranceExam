@@ -27,6 +27,15 @@ class App extends React.Component {
     }
   }
 
+
+  async handlefav(){
+    const {user}=this.props.auth0;
+    let email=user.email;
+let newData=await axios.get((`${process.env.REACT_APP_Serverurl}/getfav?email=${email}`));
+await this.setState({favData:newData.data})
+    
+  }
+
    getAlldata=async()=>{
 
     let allDataa=await axios.get(`${process.env.REACT_APP_Serverurl}/getchocolate`);
@@ -106,7 +115,7 @@ await this.setState({
             <Switch>
 
               <Route exact path="/">
-                {this.props.auth0.isAuthenticated ?<> <Modal1 Update={this.Update} closeMoadal={this.closeMoadal} showMoadal={this.state.showMoadal}/> <MyFavorites showMoadal={this.showMoadal} delete={this.delete} favData={this.state.favData}  /> </>: <Login />}
+                {this.props.auth0.isAuthenticated ?<> <Modal1 Update={this.Update} closeMoadal={this.closeMoadal} showMoadal={this.state.showMoadal}/> <MyFavorites handlefav={this.handlefav} showMoadal={this.showMoadal} delete={this.delete} favData={this.state.favData}  /> </>: <Login />}
               </Route>
 
               <Route path="/profile">

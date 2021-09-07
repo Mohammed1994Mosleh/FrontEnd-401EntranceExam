@@ -13,6 +13,12 @@ constructor(props){
   }
 }
 
+componentDidMount(){
+
+
+  this.props.handlefav();
+}
+
 
 
 
