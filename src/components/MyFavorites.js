@@ -35,10 +35,10 @@ return(
  <Card.Img variant="top" src={item.imageUrl} />
 <Card.Body>
 <Card.Title>{item.title}</Card.Title>
-
+<p>{item.description}</p>
 <Button onClick={()=>this.props.delete(item._id)} >Delete</Button>
 
-<Button onClick={this.props.showMoadal(item._id)} >Update</Button>
+<Button onClick={()=>this.props.showMoadal(item._id)} >Update</Button>
 
 
 </Card.Body>

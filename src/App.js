@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
 
-  async handlefav(email){
+   handlefav= async(email)=>{
    
 let newData=await axios.get((`${process.env.REACT_APP_Serverurl}/getfav?email=${email}`));
 await this.setState({favData:newData.data})
@@ -49,6 +49,7 @@ await this.setState({favData:newData.data})
   const {user}=this.props.auth0;
   let email=user.email;
   let obj=item
+  console.log(obj);
 
 
   let newData=await axios.post(`${process.env.REACT_APP_Serverurl}/Add?email=${email}`,obj);
@@ -83,12 +84,12 @@ e.preventDefault();
 // let newTitle=e.target.title.value;
 // let newimage=e.target.image.value;
 let newObj={
-  newTitle:e.target.title.value,
-  newimage:e.target.image.value,
-
+ title:e.target.title.value,
+ imageUrl:e.target.image.value,
+  email:email
 }
 
-let newData=await axios.put(`${process.env.REACT_APP_Serverurl}/Update/${this.state.selsectrId}?email=${email}`);
+let newData=await axios.put(`${process.env.REACT_APP_Serverurl}/Update/${this.state.selsectrId}?email=${email}`,newObj);
 
 await this.setState({
   favData:newData.data
@@ -122,7 +123,7 @@ await this.setState({
               </Route>
 
               <Route path="/getAPIData">
-                <AllDataAPI getAlldata={this.getAlldata} allData={this.state.allData}/>
+                <AllDataAPI Addtofav={this.Addtofav} getAlldata={this.getAlldata} allData={this.state.allData}/>
               </Route>
               
             </Switch>
